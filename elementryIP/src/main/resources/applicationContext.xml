@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<context:component-scan base-package="com.eip.service" />	
+	<context:annotation-config />
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+	
+	<util:properties id="applicationProperties" location="classpath:application.properties" />
+	
+	<!-- Resolves views selected for rendering by @Controllers to tile resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<beans:property name="viewClass">
+			<beans:value>org.springframework.web.servlet.view.tiles2.TilesView</beans:value>
+		</beans:property>
+		
+		<beans:property name="order" value="1" />
+	</beans:bean>
+	<interceptors>
+		<beans:bean id="webContentInterceptor"
+			class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+			<beans:property name="cacheSeconds" value="0" />
+			<beans:property name="useExpiresHeader" value="true" />
+			<beans:property name="useCacheControlHeader" value="true" />
+			<beans:property name="useCacheControlNoStore" value="true" />
+		</beans:bean>
+	</interceptors>
+	<beans:bean id="tilesConfigurer"
+		class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<beans:property name="definitions">
+			<beans:list>
+				<beans:value>/WEB-INF/classes/tiles-config.xml</beans:value>
+			</beans:list>
+		</beans:property>
+	</beans:bean>	
+
+	<beans:bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<beans:property name="host" value="smtp.gmail.com" />
+		<beans:property name="port" value="25" />
+		<beans:property name="username" value="elemntryip@gmail.com" />
+		<beans:property name="password" value="eip_admin" />
+		<beans:property name="javaMailProperties">
+			<beans:props>
+				<!-- Use SMTP transport protocol -->
+				<beans:prop key="mail.transport.protocol">smtp</beans:prop>
+				<!-- Use SMTP-AUTH to authenticate to SMTP server -->
+				<beans:prop key="mail.smtp.auth">true</beans:prop>
+				<!-- Use TLS to encrypt communication with SMTP server -->
+				<beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+				<beans:prop key="mail.debug">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
+  <beans:bean id="alertMailMessage" class="org.springframework.mail.SimpleMailMessage">
+     <beans:property name="from">
+     	<beans:value>elemntryip@gmail.com</beans:value>
+     </beans:property>
+     <beans:property name="to">
+     	<beans:value>elemntryip@gmail.com</beans:value>
+     </beans:property>
+      <beans:property name="subject" value="Successfully"/>
+   </beans:bean>
+    
+    <beans:bean
+		class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<beans:property name="defaultErrorView" value="errorPage" />
+	</beans:bean>
+	<beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	</beans:bean>
+</beans:beans>

@@ -1,0 +1,89 @@
+body{
+	color: #000;
+}
+
+.font_8{
+	text-align: justify;
+}
+
+.view-title{
+	width: 95%;
+}
+.view-link{
+	/* background: url("../images/view.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    color: #ffffff;
+    font-weight: bold;
+    padding: 5px 55px 6px 15px; */
+    color: #3EA8D2;
+}
+.view-link:hover,.view-link:focus{
+	/* text-decoration: none;
+	background: url("../images/view.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+	color: #FFFFFF; */
+	color: #137DA7;
+}
+.font-9{
+	font-size: 11px/1.4em;
+}
+.hidden-form{
+	display: none;
+}
+.no-record{
+	color: #ff0000;
+	font-size: 18px;
+	text-align: center;
+}
+.font-8{
+	margin: 0 0 3px;
+}
+
+#suggetionoption{
+	border-radius:3em;
+}
+#querysuggetion{
+    height: 500px;
+    overflow: auto;
+}
+.inner-block .pull-right {
+   margin-right: 40px;
+}
+.add-scroll{
+	height: 525px;
+	overflow: auto;
+}
+.loading{
+	display: none !important;
+}
+.patents-size{
+	/* border: 1px solid #aaa; */
+    color: #0aba79;
+    font-size: 16px;
+    text-align: center;
+}
+/* .mCSB_dragger_bar{
+	width: 15px !important;
+}
+.mCSB_draggerRail{
+	width: 5px !important;
+} */
+
+/* @media (max-width: 1500px) {
+	 .add-scroll {
+	 	height: 460px;
+	}
+} 
+@media (max-width: 1400px) {
+	 .add-scroll {
+	 	height: 365px;
+	}
+} 
+@media (max-width: 992px) {
+	 .add-scroll {
+	 	height: 325px;
+	}
+}  */
+@media (max-width: 600px) {
+	 .add-scroll {
+	 	text-align: justify;
+	}
+} 
